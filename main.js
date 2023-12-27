@@ -9,17 +9,15 @@ const temperatureUnitButton = document.getElementById('temperature-unit');
 let isCelsius = true;
 
 // Function to fetch weather data
-function fetchWeatherData(city, apiKey) {
+async function fetchWeatherData(city, apiKey) {
   const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
 
-  return fetch(apiUrl, { mode: 'cors' }).then((response) => {
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch weather data. Status: ${response.status}`,
-      );
-    }
-    return response.json();
-  });
+  const response = await fetch(apiUrl, { mode: 'cors' });
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch weather data. Status: ${response.status}`);
+  }
+  return response.json();
 }
 
 function dateFormatter(date) {
