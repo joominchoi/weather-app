@@ -1,0 +1,16 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Creating a weather forecast site using the weather API. You should be able to: - Search for a specific location - Toggle displaying the data in Fahrenheit or Celsius - Look of page should change based on the data - maybe by chaning the colour of the background or by adding images that describe the weather - Design with 3 day forecast in mind to take into consideration free tier of WeatherAPI",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1"
+  }
+}
