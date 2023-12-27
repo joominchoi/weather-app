@@ -3,6 +3,7 @@ const searchButton = document.getElementById('search-button');
 const localTimeElement = document.getElementById('local-time');
 const locationElement = document.getElementById('location');
 const temperatureElement = document.getElementById('temperature');
+const conditionElement = document.getElementById('condition');
 const feelsLikeElement = document.getElementById('feels-like');
 
 // Function to fetch weather data
@@ -41,6 +42,7 @@ function displayWeatherInformation(data) {
   localTimeElement.textContent = `Local Time: ${formattedDateUK}`;
   locationElement.textContent = `Location: ${data.location.name}, ${data.location.country}`;
   temperatureElement.textContent = `Temperature: ${data.current.temp_c}°C`;
+  conditionElement.textContent = `Condition: ${data.current.condition.text}`;
   feelsLikeElement.textContent = `Feels Like: ${data.current.feelslike_c}°C`;
 }
 
