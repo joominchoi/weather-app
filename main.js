@@ -1,5 +1,6 @@
 const cityInput = document.getElementById('city-input');
 const searchButton = document.getElementById('search-button');
+const localTimeElement = document.getElementById('local-time');
 const locationElement = document.getElementById('location');
 const temperatureElement = document.getElementById('temperature');
 
@@ -17,8 +18,26 @@ function fetchWeatherData(city, apiKey) {
   });
 }
 
+function dateFormatter(date) {
+  const inputDate = date;
+  const dateObject = new Date(inputDate);
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+  };
+  return dateObject.toLocaleString('en-GB', options);
+}
+
 // Function to display weather information
 function displayWeatherInformation(data) {
+  const formattedDateUK = dateFormatter(data.location.localtime);
+
+  localTimeElement.textContent = `Local Time: ${formattedDateUK}`;
   locationElement.textContent = `Location: ${data.location.name}, ${data.location.country}`;
   temperatureElement.textContent = `Temperature: ${data.current.temp_c}°C`;
 }
