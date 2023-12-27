@@ -11,6 +11,7 @@ Creating a weather forecast site using the weather API. You should be able to:
 ## Thoughts
 
 ## Learnings
+- Be wary of typos when referencing key-value pair from JSON data
 
 ## Recapping
 
