@@ -64,6 +64,16 @@ function dateFormatter(date) {
   return dateObject.toLocaleString('en-GB', options);
 }
 
+function timeFormatter(time) {
+  const options = {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+  };
+  const dateObject = new Date(`2000-01-01 ${time}`); // Using a common date for formatting
+  return dateObject.toLocaleString('en-GB', options);
+}
+
 // Function to update temperature elements
 function updateTemperatures(data, isCelsius) {
   const temperatureKey = isCelsius ? 'temp_c' : 'temp_f';
@@ -91,6 +101,8 @@ function handleButtonClick(isCelsius) {
 function displayWeatherInformation(data) {
   const formattedDateUK = dateFormatter(data.location.localtime);
   const iconURL = `https:${data.current.condition.icon}`;
+  const formattedSunset = timeFormatter(data.forecast.forecastday[0].astro.sunset);
+  const formattedSunrise = timeFormatter(data.forecast.forecastday[0].astro.sunrise);
 
   localTimeElement.textContent = `Local Time: ${formattedDateUK}`;
   locationElement.textContent = `Location: ${data.location.name}, ${data.location.country}`;
@@ -100,8 +112,8 @@ function displayWeatherInformation(data) {
   todayMaxTemperatureElement.textContent = `Min Temperature: ${data.forecast.forecastday[0].day.maxtemp_c} °C`;
   windElement.textContent = `Wind: ${data.current.wind_mph} mph`;
   uvElement.textContent = `UV: ${data.current.uv}`;
-  sunsetElement.textContent = `Sunset: ${data.forecast.forecastday[0].astro.sunset}`;
-  sunriseElement.textContent = `Sunrise: ${data.forecast.forecastday[0].astro.sunrise}`;
+  sunsetElement.textContent = `Sunset: ${formattedSunset}`;
+  sunriseElement.textContent = `Sunrise: ${formattedSunrise}`;
   humidityElement.textContent = `Humidity: ${data.current.humidity}%`;
   conditionElement.textContent = `Condition: ${data.current.condition.text}`;
   conditionIconElement.src = iconURL;
