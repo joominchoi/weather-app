@@ -20,6 +20,8 @@ where '1' indicates it's daytime and '0' indiciates it's nighttime.
   - This approach is useful when you want to format time strings without dealing with the complexities of different date formats, time zones, etc. It allows you to leverage the toLocaleString method for consistent time formatting.
 
 ## Recapping
+- Adding styling to different classes to add and remove from element depending on state
+  - For example having different styling for whether it is daytime or nighttime for the searched city/country
 
 ## WIP
 - Custom UI alert for invalid search parameter

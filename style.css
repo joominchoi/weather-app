@@ -1,11 +1,22 @@
 body {
+  background: url('assets/day.jpeg') center center/cover no-repeat;
   display: flex;
   gap: 10px;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: center;
+  padding-left: 20px;
   height: 100vh; /* 100% of the viewport height */
   margin: 0; /* Remove default margin */
+}
+
+.day {
+  background-image: url('assets/day.jpeg');
+}
+
+.night {
+  background-image: url('assets/night.jpeg');
+  color: white;
 }
 
 button {

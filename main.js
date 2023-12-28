@@ -3,10 +3,16 @@ const cityInput = document.getElementById('city-input');
 const searchButton = document.getElementById('search-button');
 const localTimeElement = document.getElementById('local-time');
 const locationElement = document.getElementById('location');
-const currentTemperatureElement = document.getElementById('current-temperature');
+const currentTemperatureElement = document.getElementById(
+  'current-temperature',
+);
 const feelsLikeElement = document.getElementById('feels-like');
-const todayMinTemperatureElement = document.getElementById('today-min-temperature');
-const todayMaxTemperatureElement = document.getElementById('today-max-temperature');
+const todayMinTemperatureElement = document.getElementById(
+  'today-min-temperature',
+);
+const todayMaxTemperatureElement = document.getElementById(
+  'today-max-temperature',
+);
 const windElement = document.getElementById('wind');
 const uvElement = document.getElementById('uv');
 const sunsetElement = document.getElementById('sunset');
@@ -30,7 +36,7 @@ async function fetchWeatherData(city) {
 
   const response = await fetch(apiUrl, { mode: 'cors' });
   if (!response.ok) {
-    alert(`Please enter a valid country or city`);
+    alert('Please enter a valid country or city');
     cityInput.value = '';
     throw new Error(`Failed to fetch weather data. Status: ${response.status}`);
   }
@@ -46,6 +52,7 @@ async function fetchWeatherInformation() {
       console.log(weatherData);
       // eslint-disable-next-line no-use-before-define
       displayWeatherInformation(weatherData);
+      toggleBackground();
       cityInput.value = '';
     }
   } catch (error) {
@@ -174,6 +181,18 @@ speedUnitButton.addEventListener('click', () => {
     speedUnitButton.textContent = 'Display mph';
   }
 });
+
+function toggleBackground() {
+  const { body } = document;
+
+  if (weatherData.current.is_day === 1) {
+    body.classList.remove('night');
+    body.classList.add('day');
+  } else {
+    body.classList.remove('day');
+    body.classList.add('night');
+  }
+}
 
 // Initial fetch when the page loads
 fetchWeatherInformation().then(() => {
