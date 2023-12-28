@@ -3,10 +3,17 @@ const cityInput = document.getElementById('city-input');
 const searchButton = document.getElementById('search-button');
 const localTimeElement = document.getElementById('local-time');
 const locationElement = document.getElementById('location');
-const temperatureElement = document.getElementById('temperature');
+const currentTemperatureElement = document.getElementById('current-temperature');
+const feelsLikeElement = document.getElementById('feels-like');
+const todayMinTemperatureElement = document.getElementById('today-min-temperature');
+const todayMaxTemperatureElement = document.getElementById('today-max-temperature');
+const windElement = document.getElementById('wind');
+const uvElement = document.getElementById('uv');
+const sunsetElement = document.getElementById('sunset');
+const sunriseElement = document.getElementById('sunrise');
+const humidityElement = document.getElementById('humidity');
 const conditionElement = document.getElementById('condition');
 const conditionIconElement = document.getElementById('condition-icon');
-const feelsLikeElement = document.getElementById('feels-like');
 const temperatureUnitButton = document.getElementById('temperature-unit');
 let isCelsius = true;
 let weatherData; // Store weather data in a variable
@@ -52,7 +59,7 @@ function dateFormatter(date) {
     day: 'numeric',
     hour: 'numeric',
     minute: 'numeric',
-    hour12: true,
+    hour12: false,
   };
   return dateObject.toLocaleString('en-GB', options);
 }
@@ -72,7 +79,7 @@ function updateTemperatures(data, isCelsius) {
 function handleButtonClick(isCelsius) {
   const temperatures = updateTemperatures(weatherData, isCelsius);
 
-  temperatureElement.textContent = `Temperature: ${temperatures.temperature}°${
+  currentTemperatureElement.textContent = `Current Temperature: ${temperatures.temperature} °${
     isCelsius ? 'C' : 'F'
   }`;
   feelsLikeElement.textContent = `Feels Like: ${temperatures.feelsLike}°${
@@ -87,10 +94,17 @@ function displayWeatherInformation(data) {
 
   localTimeElement.textContent = `Local Time: ${formattedDateUK}`;
   locationElement.textContent = `Location: ${data.location.name}, ${data.location.country}`;
-  temperatureElement.textContent = `Temperature: ${data.current.temp_c}°C`;
+  currentTemperatureElement.textContent = `Current Temperature: ${data.current.temp_c} °C`;
+  feelsLikeElement.textContent = `Feels Like: ${data.current.feelslike_c} °C`;
+  todayMinTemperatureElement.textContent = `Min Temperature: ${data.forecast.forecastday[0].day.mintemp_c} °C`;
+  todayMaxTemperatureElement.textContent = `Min Temperature: ${data.forecast.forecastday[0].day.maxtemp_c} °C`;
+  windElement.textContent = `Wind: ${data.current.wind_mph} mph`;
+  uvElement.textContent = `UV: ${data.current.uv}`;
+  sunsetElement.textContent = `Sunset: ${data.forecast.forecastday[0].astro.sunset}`;
+  sunriseElement.textContent = `Sunrise: ${data.forecast.forecastday[0].astro.sunrise}`;
+  humidityElement.textContent = `Humidity: ${data.current.humidity}%`;
   conditionElement.textContent = `Condition: ${data.current.condition.text}`;
   conditionIconElement.src = iconURL;
-  feelsLikeElement.textContent = `Feels Like: ${data.current.feelslike_c}°C`;
 }
 
 searchButton.addEventListener('click', fetchWeatherInformation);
