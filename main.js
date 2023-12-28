@@ -5,6 +5,7 @@ const localTimeElement = document.getElementById('local-time');
 const locationElement = document.getElementById('location');
 const temperatureElement = document.getElementById('temperature');
 const conditionElement = document.getElementById('condition');
+const conditionIconElement = document.getElementById('condition-icon');
 const feelsLikeElement = document.getElementById('feels-like');
 const temperatureUnitButton = document.getElementById('temperature-unit');
 let isCelsius = true;
@@ -15,7 +16,8 @@ const defaultCity = 'London';
 
 // Function to fetch weather data
 async function fetchWeatherData(city) {
-  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${myKey}&q=${city}`;
+  const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${myKey}&q=${city}&days=3&aqi=no&alerts=no
+  `;
 
   const response = await fetch(apiUrl, { mode: 'cors' });
   if (!response.ok) {
@@ -81,11 +83,13 @@ function handleButtonClick(isCelsius) {
 // Function to display weather information
 function displayWeatherInformation(data) {
   const formattedDateUK = dateFormatter(data.location.localtime);
+  const iconURL = `https:${data.current.condition.icon}`;
 
   localTimeElement.textContent = `Local Time: ${formattedDateUK}`;
   locationElement.textContent = `Location: ${data.location.name}, ${data.location.country}`;
   temperatureElement.textContent = `Temperature: ${data.current.temp_c}°C`;
   conditionElement.textContent = `Condition: ${data.current.condition.text}`;
+  conditionIconElement.src = iconURL;
   feelsLikeElement.textContent = `Feels Like: ${data.current.feelslike_c}°C`;
 }
 
