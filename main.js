@@ -94,6 +94,11 @@ searchButton.addEventListener('click', fetchWeatherInformation);
 temperatureUnitButton.addEventListener('click', () => {
   isCelsius = !isCelsius; // Toggle between Celsius and Fahrenheit
   handleButtonClick(isCelsius);
+  if (isCelsius) {
+    temperatureUnitButton.textContent = 'Display °F';
+  } else {
+    temperatureUnitButton.textContent = 'Display °C';
+  }
 });
 
 // Initial fetch when the page loads
