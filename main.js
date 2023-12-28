@@ -76,23 +76,33 @@ function timeFormatter(time) {
 
 // Function to update temperature elements
 function updateTemperatures(data, isCelsius) {
-  const temperatureKey = isCelsius ? 'temp_c' : 'temp_f';
+  const currentTemperatureKey = isCelsius ? 'temp_c' : 'temp_f';
   const feelsLikeKey = isCelsius ? 'feelslike_c' : 'feelslike_f';
+  const todayMinTemperatureKey = isCelsius ? 'mintemp_c' : 'mintemp_f';
+  const todayMaxTemperatureKey = isCelsius ? 'maxtemp_c' : 'maxtemp_f';
 
   return {
-    temperature: data.current[temperatureKey],
+    currentTemperature: data.current[currentTemperatureKey],
     feelsLike: data.current[feelsLikeKey],
+    todayMinTemperature: data.forecast.forecastday[0].day[todayMinTemperatureKey],
+    todayMaxTemperature: data.forecast.forecastday[0].day[todayMaxTemperatureKey],
   };
 }
 
 // Function to handle button click
-function handleButtonClick(isCelsius) {
+function handleTemperatureButtonClick(isCelsius) {
   const temperatures = updateTemperatures(weatherData, isCelsius);
 
-  currentTemperatureElement.textContent = `Current Temperature: ${temperatures.temperature} °${
+  currentTemperatureElement.textContent = `Current Temperature: ${temperatures.currentTemperature} °${
     isCelsius ? 'C' : 'F'
   }`;
   feelsLikeElement.textContent = `Feels Like: ${temperatures.feelsLike}°${
+    isCelsius ? 'C' : 'F'
+  }`;
+  todayMinTemperatureElement.textContent = `Min Temperature: ${temperatures.todayMinTemperature} °${
+    isCelsius ? 'C' : 'F'
+  }`;
+  todayMaxTemperatureElement.textContent = `Max Temperature: ${temperatures.todayMaxTemperature} °${
     isCelsius ? 'C' : 'F'
   }`;
 }
@@ -123,7 +133,7 @@ searchButton.addEventListener('click', fetchWeatherInformation);
 
 temperatureUnitButton.addEventListener('click', () => {
   isCelsius = !isCelsius; // Toggle between Celsius and Fahrenheit
-  handleButtonClick(isCelsius);
+  handleTemperatureButtonClick(isCelsius);
   if (isCelsius) {
     temperatureUnitButton.textContent = 'Display °F';
   } else {
@@ -133,5 +143,5 @@ temperatureUnitButton.addEventListener('click', () => {
 
 // Initial fetch when the page loads
 fetchWeatherInformation().then(() => {
-  handleButtonClick(isCelsius); // Call handleButtonClick with the initial value
+  handleTemperatureButtonClick(isCelsius); // Call handleButtonClick with the initial value
 });
