@@ -30,6 +30,7 @@ async function fetchWeatherData(city) {
 
   const response = await fetch(apiUrl, { mode: 'cors' });
   if (!response.ok) {
+    alert(`Please enter a valid country or city`);
     throw new Error(`Failed to fetch weather data. Status: ${response.status}`);
   }
   return response.json();
