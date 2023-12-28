@@ -15,7 +15,9 @@ const humidityElement = document.getElementById('humidity');
 const conditionElement = document.getElementById('condition');
 const conditionIconElement = document.getElementById('condition-icon');
 const temperatureUnitButton = document.getElementById('temperature-unit');
+const speedUnitButton = document.getElementById('speed-unit');
 let isCelsius = true;
+let isMph = true;
 let weatherData; // Store weather data in a variable
 
 const myKey = '6e77dbcd41ad4cf5b2a183208232112';
@@ -76,51 +78,71 @@ function timeFormatter(time) {
 
 // Function to update temperature elements
 function updateTemperatures(data, isCelsius) {
-  const currentTemperatureKey = isCelsius ? 'temp_c' : 'temp_f';
-  const feelsLikeKey = isCelsius ? 'feelslike_c' : 'feelslike_f';
-  const todayMinTemperatureKey = isCelsius ? 'mintemp_c' : 'mintemp_f';
-  const todayMaxTemperatureKey = isCelsius ? 'maxtemp_c' : 'maxtemp_f';
+  const currentTemperatureUnit = isCelsius ? 'temp_c' : 'temp_f';
+  const feelsLikeUnit = isCelsius ? 'feelslike_c' : 'feelslike_f';
+  const todayMinTemperatureUnit = isCelsius ? 'mintemp_c' : 'mintemp_f';
+  const todayMaxTemperatureUnit = isCelsius ? 'maxtemp_c' : 'maxtemp_f';
 
   return {
-    currentTemperature: data.current[currentTemperatureKey],
-    feelsLike: data.current[feelsLikeKey],
-    todayMinTemperature: data.forecast.forecastday[0].day[todayMinTemperatureKey],
-    todayMaxTemperature: data.forecast.forecastday[0].day[todayMaxTemperatureKey],
+    currentTemperature: data.current[currentTemperatureUnit],
+    feelsLike: data.current[feelsLikeUnit],
+    todayMinTemperature:
+      data.forecast.forecastday[0].day[todayMinTemperatureUnit],
+    todayMaxTemperature:
+      data.forecast.forecastday[0].day[todayMaxTemperatureUnit],
   };
 }
 
 // Function to handle button click
-function handleTemperatureButtonClick(isCelsius) {
+function handleTemperatureUnitButtonClick(isCelsius) {
   const temperatures = updateTemperatures(weatherData, isCelsius);
 
-  currentTemperatureElement.textContent = `Current Temperature: ${temperatures.currentTemperature} °${
-    isCelsius ? 'C' : 'F'
-  }`;
+  currentTemperatureElement.textContent = `Current Temperature: ${
+    temperatures.currentTemperature
+  }°${isCelsius ? 'C' : 'F'}`;
   feelsLikeElement.textContent = `Feels Like: ${temperatures.feelsLike}°${
     isCelsius ? 'C' : 'F'
   }`;
-  todayMinTemperatureElement.textContent = `Min Temperature: ${temperatures.todayMinTemperature} °${
-    isCelsius ? 'C' : 'F'
-  }`;
-  todayMaxTemperatureElement.textContent = `Max Temperature: ${temperatures.todayMaxTemperature} °${
-    isCelsius ? 'C' : 'F'
-  }`;
+  todayMinTemperatureElement.textContent = `Min Temperature: ${
+    temperatures.todayMinTemperature
+  }°${isCelsius ? 'C' : 'F'}`;
+  todayMaxTemperatureElement.textContent = `Max Temperature: ${
+    temperatures.todayMaxTemperature
+  }°${isCelsius ? 'C' : 'F'}`;
+}
+
+function updateSpeed(data, isMph) {
+  const windUnit = isMph ? 'wind_mph' : 'wind_kph';
+
+  return {
+    wind: data.current[windUnit],
+  };
+}
+
+function handleSpeedButtonClick(isMph) {
+  const speed = updateSpeed(weatherData, isMph);
+
+  windElement.textContent = `Wind: ${speed.wind}${isMph ? 'mph' : 'kph'}`;
 }
 
 // Function to display weather information
 function displayWeatherInformation(data) {
   const formattedDateUK = dateFormatter(data.location.localtime);
   const iconURL = `https:${data.current.condition.icon}`;
-  const formattedSunset = timeFormatter(data.forecast.forecastday[0].astro.sunset);
-  const formattedSunrise = timeFormatter(data.forecast.forecastday[0].astro.sunrise);
+  const formattedSunset = timeFormatter(
+    data.forecast.forecastday[0].astro.sunset,
+  );
+  const formattedSunrise = timeFormatter(
+    data.forecast.forecastday[0].astro.sunrise,
+  );
 
   localTimeElement.textContent = `Local Time: ${formattedDateUK}`;
   locationElement.textContent = `Location: ${data.location.name}, ${data.location.country}`;
-  currentTemperatureElement.textContent = `Current Temperature: ${data.current.temp_c} °C`;
-  feelsLikeElement.textContent = `Feels Like: ${data.current.feelslike_c} °C`;
-  todayMinTemperatureElement.textContent = `Min Temperature: ${data.forecast.forecastday[0].day.mintemp_c} °C`;
-  todayMaxTemperatureElement.textContent = `Min Temperature: ${data.forecast.forecastday[0].day.maxtemp_c} °C`;
-  windElement.textContent = `Wind: ${data.current.wind_mph} mph`;
+  currentTemperatureElement.textContent = `Current Temperature: ${data.current.temp_c}°C`;
+  feelsLikeElement.textContent = `Feels Like: ${data.current.feelslike_c}°C`;
+  todayMinTemperatureElement.textContent = `Min Temperature: ${data.forecast.forecastday[0].day.mintemp_c}°C`;
+  todayMaxTemperatureElement.textContent = `Max Temperature: ${data.forecast.forecastday[0].day.maxtemp_c}°C`;
+  windElement.textContent = `Wind: ${data.current.wind_mph}mph`;
   uvElement.textContent = `UV: ${data.current.uv}`;
   sunsetElement.textContent = `Sunset: ${formattedSunset}`;
   sunriseElement.textContent = `Sunrise: ${formattedSunrise}`;
@@ -133,7 +155,7 @@ searchButton.addEventListener('click', fetchWeatherInformation);
 
 temperatureUnitButton.addEventListener('click', () => {
   isCelsius = !isCelsius; // Toggle between Celsius and Fahrenheit
-  handleTemperatureButtonClick(isCelsius);
+  handleTemperatureUnitButtonClick(isCelsius);
   if (isCelsius) {
     temperatureUnitButton.textContent = 'Display °F';
   } else {
@@ -141,7 +163,17 @@ temperatureUnitButton.addEventListener('click', () => {
   }
 });
 
+speedUnitButton.addEventListener('click', () => {
+  isMph = !isMph;
+  handleSpeedButtonClick(isMph);
+  if (isMph) {
+    speedUnitButton.textContent = 'Display kph';
+  } else {
+    speedUnitButton.textContent = 'Display mph';
+  }
+});
+
 // Initial fetch when the page loads
 fetchWeatherInformation().then(() => {
-  handleTemperatureButtonClick(isCelsius); // Call handleButtonClick with the initial value
+  // handleTemperatureUnitButtonClick(isCelsius); // Call handleButtonClick with the initial value
 });
