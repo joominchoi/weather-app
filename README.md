@@ -25,7 +25,6 @@ where '1' indicates it's daytime and '0' indiciates it's nighttime.
 
 ## WIP
 - Custom UI alert for invalid search parameter
-- Look of page should change based on the data - maybe by chaning the colour of the background or by adding images that describe the weather
 - Design with 3 day forecast in mind to take into consideration free tier of WeatherAPI
 - Add any styling you like!
 - Optional: add a ‘loading’ component that displays from the time the form is submitted until the information comes back from the API. Use DevTools to test for low-end devices.
