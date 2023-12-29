@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'montserrat'; /* Choose a name for your font */
+  src: url('assets/montserrat.ttf') format('truetype');
+}
+
 body {
   background: url('assets/day.jpeg') right / cover no-repeat;
   display: flex;
@@ -8,6 +13,7 @@ body {
   padding-left: 20px;
   height: 100vh; /* 100% of the viewport height */
   margin: 0; /* Remove default margin */
+  font-family: 'montserrat', sans-serif;
 }
 
 .day {
