@@ -1,5 +1,5 @@
 body {
-  background: url('assets/day.jpeg') center center/cover no-repeat;
+  background: url('assets/day.jpeg') right / cover no-repeat;
   display: flex;
   gap: 10px;
   flex-direction: column;
