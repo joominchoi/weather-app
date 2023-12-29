@@ -24,8 +24,8 @@ where '1' indicates it's daytime and '0' indiciates it's nighttime.
   - For example having different styling for whether it is daytime or nighttime for the searched city/country
 
 ## WIP
+- Layout of information
 - Custom UI alert for invalid search parameter
-- Design with 3 day forecast in mind to take into consideration free tier of WeatherAPI
 - Add any styling you like!
 - Optional: add a ‘loading’ component that displays from the time the form is submitted until the information comes back from the API. Use DevTools to test for low-end devices.
 - Push that baby to github and share your solution below!

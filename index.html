@@ -8,25 +8,48 @@
   </head>
   <body>
     <main>
-      <h1>Weather App</h1>
       <input type="text" id="city-input" placeholder="Search for a city..." />
       <button id="search-button">Search</button>
-      <h2>Weather Information</h2>
-      <p id="local-time"></p>
-      <p id="location"></p>
-      <p id="current-temperature"></p>
-      <p id="feels-like"></p>
-      <p id="today-min-temperature"></p>
-      <p id="today-max-temperature"></p>
-      <p id="wind"></p>
-      <p id="uv"></p>
-      <p id="sunset"></p>
-      <p id="sunrise"></p>
-      <p id="humidity"></p>
-      <p id="condition"></p>
-      <img alt="Weather Condition Icon" id="condition-icon">
+      <div id="current-information">
+        <p id="local-time"></p>
+        <p id="location"></p>
+        <p id="current-temperature"></p>
+        <p id="feels-like"></p>
+        <p id="today-min-temperature"></p>
+        <p id="today-max-temperature"></p>
+        <p id="wind"></p>
+        <p id="uv"></p>
+        <p id="sunset"></p>
+        <p id="sunrise"></p>
+        <p id="humidity"></p>
+        <p id="condition"></p>
+        <img alt="Weather Condition Icon" id="condition-icon" />
+      </div>
       <button id="temperature-unit">Display °F</button>
       <button id="speed-unit">Display kph</button>
+      <div id="daily-forecast-container">
+        <div class="daily-forecast">
+          <p id='forecast-day-3'>Today</p>
+          <p id="forecast-day-1-min-temperature"></p>
+          <p id="forecast-day-1-max-temperature"></p>
+          <p id="forecast-day-1-condition"></p>
+          <img alt="Weather Condition Icon" id="forecast-day-1-condition-icon" />
+        </div>
+        <div class="daily-forecast">
+          <p id="forecast-day-2"></p>
+          <p id="forecast-day-2-min-temperature"></p>
+          <p id="forecast-day-2-max-temperature"></p>
+          <p id="forecast-day-2-condition"></p>
+          <img alt="Weather Condition Icon" id="forecast-day-2-condition-icon" />
+        </div>
+        <div class="daily-forecast">
+          <p id="forecast-day-3"></p>
+          <p id="forecast-day-3-min-temperature"></p>
+          <p id="forecast-day-3-max-temperature"></p>
+          <p id="forecast-day-3-condition"></p>
+          <img alt="Weather Condition Icon" id="forecast-day-3-condition-icon" />
+        </div>
+      </div>
     </main>
     <script src="main.js"></script>
   </body>

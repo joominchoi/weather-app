@@ -3,16 +3,10 @@ const cityInput = document.getElementById('city-input');
 const searchButton = document.getElementById('search-button');
 const localTimeElement = document.getElementById('local-time');
 const locationElement = document.getElementById('location');
-const currentTemperatureElement = document.getElementById(
-  'current-temperature',
-);
+const currentTemperatureElement = document.getElementById('current-temperature');
 const feelsLikeElement = document.getElementById('feels-like');
-const todayMinTemperatureElement = document.getElementById(
-  'today-min-temperature',
-);
-const todayMaxTemperatureElement = document.getElementById(
-  'today-max-temperature',
-);
+const todayMinTemperatureElement = document.getElementById('today-min-temperature');
+const todayMaxTemperatureElement = document.getElementById('today-max-temperature');
 const windElement = document.getElementById('wind');
 const uvElement = document.getElementById('uv');
 const sunsetElement = document.getElementById('sunset');
@@ -22,6 +16,20 @@ const conditionElement = document.getElementById('condition');
 const conditionIconElement = document.getElementById('condition-icon');
 const temperatureUnitButton = document.getElementById('temperature-unit');
 const speedUnitButton = document.getElementById('speed-unit');
+const forecastDay1MinTemperature = document.getElementById('forecast-day-1-min-temperature');
+const forecastDay1MaxTemperature = document.getElementById('forecast-day-1-max-temperature');
+const forecastDay1Condition = document.getElementById('forecast-day-1-condition');
+const forecastDay1ConditionIcon = document.getElementById('forecast-day-1-condition-icon');
+const forecastDay2Element = document.getElementById('forecast-day-2');
+const forecastDay2MinTemperature = document.getElementById('forecast-day-2-min-temperature');
+const forecastDay2MaxTemperature = document.getElementById('forecast-day-2-max-temperature');
+const forecastDay2Condition = document.getElementById('forecast-day-2-condition');
+const forecastDay2ConditionIcon = document.getElementById('forecast-day-2-condition-icon');
+const forecastDay3Element = document.getElementById('forecast-day-3');
+const forecastDay3MinTemperature = document.getElementById('forecast-day-3-min-temperature');
+const forecastDay3MaxTemperature = document.getElementById('forecast-day-3-max-temperature');
+const forecastDay3Condition = document.getElementById('forecast-day-3-condition');
+const forecastDay3ConditionIcon = document.getElementById('forecast-day-3-condition-icon');
 let isCelsius = true;
 let isMph = true;
 let weatherData; // Store weather data in a variable
@@ -58,6 +66,14 @@ async function fetchWeatherInformation() {
   } catch (error) {
     console.error('Error fetching weather data:', error.message);
   }
+}
+
+function getDayOfWeek(dateString) {
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const date = new Date(dateString);
+  const dayIndex = date.getDay();
+
+  return daysOfWeek[dayIndex];
 }
 
 function dateFormatter(date) {
@@ -137,13 +153,14 @@ function handleSpeedButtonClick(isMph) {
 // Function to display weather information
 function displayWeatherInformation(data) {
   const formattedDateUK = dateFormatter(data.location.localtime);
-  const iconURL = `https:${data.current.condition.icon}`;
-  const formattedSunset = timeFormatter(
-    data.forecast.forecastday[0].astro.sunset,
-  );
-  const formattedSunrise = timeFormatter(
-    data.forecast.forecastday[0].astro.sunrise,
-  );
+  const currentConditioniconURL = `https:${data.current.condition.icon}`;
+  const forecastDay1ConditioniconURL = `https:${data.forecast.forecastday[0].day.condition.icon}`;
+  const forecastDay2ConditioniconURL = `https:${data.forecast.forecastday[1].day.condition.icon}`;
+  const forecastDay3ConditioniconURL = `https:${data.forecast.forecastday[2].day.condition.icon}`;
+  const formattedSunset = timeFormatter(data.forecast.forecastday[0].astro.sunset);
+  const formattedSunrise = timeFormatter(data.forecast.forecastday[0].astro.sunrise);
+  const forecastDay2Day = getDayOfWeek(data.forecast.forecastday[1].date);
+  const forecastDay3Day = getDayOfWeek(data.forecast.forecastday[2].date);
 
   localTimeElement.textContent = `Local Time: ${formattedDateUK}`;
   locationElement.textContent = `Location: ${data.location.name}, ${data.location.country}`;
@@ -157,7 +174,21 @@ function displayWeatherInformation(data) {
   sunriseElement.textContent = `Sunrise: ${formattedSunrise}`;
   humidityElement.textContent = `Humidity: ${data.current.humidity}%`;
   conditionElement.textContent = `Condition: ${data.current.condition.text}`;
-  conditionIconElement.src = iconURL;
+  conditionIconElement.src = currentConditioniconURL;
+  forecastDay1MinTemperature.textContent = `Min Temperature: ${data.forecast.forecastday[0].day.mintemp_c}°C`;
+  forecastDay1MaxTemperature.textContent = `Max Temperature: ${data.forecast.forecastday[0].day.maxtemp_c}°C`;
+  forecastDay1Condition.textContent = `Condition: ${data.forecast.forecastday[0].day.condition.text}`;
+  forecastDay1ConditionIcon.src = forecastDay1ConditioniconURL;
+  forecastDay2Element.textContent = forecastDay2Day;
+  forecastDay2MinTemperature.textContent = `Min Temperature: ${data.forecast.forecastday[1].day.mintemp_c}°C`;
+  forecastDay2MaxTemperature.textContent = `Max Temperature: ${data.forecast.forecastday[1].day.maxtemp_c}°C`;
+  forecastDay2Condition.textContent = `Condition: ${data.forecast.forecastday[1].day.condition.text}`;
+  forecastDay2ConditionIcon.src = forecastDay2ConditioniconURL;
+  forecastDay3Element.textContent = forecastDay3Day;
+  forecastDay3MinTemperature.textContent = `Min Temperature: ${data.forecast.forecastday[2].day.mintemp_c}°C`;
+  forecastDay3MaxTemperature.textContent = `Max Temperature: ${data.forecast.forecastday[2].day.maxtemp_c}°C`;
+  forecastDay3Condition.textContent = `Condition: ${data.forecast.forecastday[2].day.condition.text}`;
+  forecastDay3ConditionIcon.src = forecastDay3ConditioniconURL;
 }
 
 searchButton.addEventListener('click', fetchWeatherInformation);
