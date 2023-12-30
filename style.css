@@ -28,3 +28,8 @@ body {
 button {
   cursor: pointer;
 }
+
+#daily-forecast-container {
+  display: flex;
+  gap: 20px;
+}
