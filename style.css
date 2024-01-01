@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'montserrat'; /* Choose a name for your font */
-  src: url('assets/montserrat.ttf') format('truetype');
+  font-family: "montserrat"; /* Choose a name for your font */
+  src: url("assets/montserrat.ttf") format("truetype");
 }
 
 body {
-  background: url('assets/day.jpeg') right / cover no-repeat;
+  background: url("assets/day.jpeg") right / cover no-repeat;
   display: flex;
   gap: 10px;
   flex-direction: column;
@@ -13,16 +13,56 @@ body {
   padding-left: 20px;
   height: 100vh; /* 100% of the viewport height */
   margin: 0; /* Remove default margin */
-  font-family: 'montserrat', sans-serif;
+  font-family: "montserrat", sans-serif;
 }
 
 .day {
-  background-image: url('assets/day.jpeg');
+  background-image: url("assets/day.jpeg");
 }
 
 .night {
-  background-image: url('assets/night.jpeg');
+  background-image: url("assets/night.jpeg");
   color: white;
+}
+
+#search-box {
+  display: flex;
+  position: relative;
+  width: fit-content;
+  border-bottom: 2px solid #ffffff;
+  padding-bottom: 5px;
+  gap: 5px;
+}
+
+#city-input {
+  width: 250px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  color: white;
+}
+
+#search-button {
+  width: 20px;
+  height: 20px;
+  filter: invert(100%);
+}
+
+#search-button:hover {
+  cursor: pointer;
+  transform: scale(110%);
+}
+
+#city-input:focus {
+  outline: none;
+}
+
+#city-input:focus::placeholder {
+  color: transparent;
+}
+
+#city-input::placeholder {
+  color: #ffffff; /* Set the placeholder color to red */
 }
 
 button {
