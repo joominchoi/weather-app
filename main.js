@@ -63,7 +63,7 @@ const defaultCity = 'London';
 
 // Function to fetch weather data
 async function fetchWeatherData(city) {
-  const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${myKey}&q=${city}&days=3&aqi=no&alerts=no
+  const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${myKey}&q=${city}&days=3&aqi=no&alerts=no
   `;
 
   const response = await fetch(apiUrl, { mode: 'cors' });
