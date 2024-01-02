@@ -54,6 +54,7 @@ button {
   font-size: 16px;
   border: none;
   background: none;
+  color: white;
 }
 
 #city-input:focus {
@@ -105,6 +106,7 @@ button {
 }
 
 #current-temperature {
+  width: 100px;
   font-size: 2rem;
   font-weight: bold;
   margin: 0;
@@ -168,6 +170,10 @@ button {
 
 #temperature-unit:hover, #speed-unit:hover {
   transform: scale(105%);
+}
+
+#speed-unit {
+  width: 100px;
 }
 
 #forecast {
