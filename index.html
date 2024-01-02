@@ -16,19 +16,29 @@
       <img src="assets/search-icon.svg" alt="search" id="search-button" />
     </div>
     <div id="current-information">
-      <p id="local-time"></p>
-      <p id="location"></p>
-      <p id="current-temperature"></p>
-      <p id="feels-like"></p>
-      <p id="today-min-temperature"></p>
-      <p id="today-max-temperature"></p>
-      <p id="wind"></p>
-      <p id="uv"></p>
-      <p id="sunset"></p>
-      <p id="sunrise"></p>
-      <p id="humidity"></p>
-      <p id="condition"></p>
-      <img alt="Weather Condition Icon" id="current-condition-icon" />
+      <div id="top">
+        <div class="left">
+          <p id="location"></p>
+          <p id="local-time"></p>
+        </div>
+        <div class="right">
+          <p id="current-temperature"></p>
+          <p id="feels-like"></p>
+          <p id="current-condition"></p>
+          <img alt="Weather Condition Icon" id="current-condition-icon" />
+        </div>
+      </div>
+      <div id="bottom">
+        <div class="left">
+          <p id="wind"></p>
+          <p id="uv"></p>
+          <p id="humidity"></p>
+        </div>
+        <div class="right">
+          <p id="sunset"></p>
+          <p id="sunrise"></p>
+        </div>
+      </div>
     </div>
     <button id="temperature-unit">Display °F</button>
     <button id="speed-unit">Display kph</button>
@@ -37,24 +47,51 @@
       <div id="daily-forecast-container">
         <div class="daily-forecast">
           <p id="forecast-day-1">Today</p>
-          <p class="forecast-max-temperature" id="forecast-day-1-max-temperature"></p>
-          <p class="forecast-min-temperature" id="forecast-day-1-min-temperature"></p>
+          <p
+            class="forecast-max-temperature"
+            id="forecast-day-1-max-temperature"
+          ></p>
+          <p
+            class="forecast-min-temperature"
+            id="forecast-day-1-min-temperature"
+          ></p>
           <p class="forecast-condition" id="forecast-day-1-condition"></p>
-          <img alt="Weather Condition Icon" id="forecast-day-1-condition-icon" />
+          <img
+            alt="Weather Condition Icon"
+            id="forecast-day-1-condition-icon"
+          />
         </div>
         <div class="daily-forecast">
           <p id="forecast-day-2"></p>
-          <p class="forecast-max-temperature" id="forecast-day-2-max-temperature"></p>
-          <p class="forecast-min-temperature" id="forecast-day-2-min-temperature"></p>
+          <p
+            class="forecast-max-temperature"
+            id="forecast-day-2-max-temperature"
+          ></p>
+          <p
+            class="forecast-min-temperature"
+            id="forecast-day-2-min-temperature"
+          ></p>
           <p class="forecast-condition" id="forecast-day-2-condition"></p>
-          <img alt="Weather Condition Icon" id="forecast-day-2-condition-icon" />
+          <img
+            alt="Weather Condition Icon"
+            id="forecast-day-2-condition-icon"
+          />
         </div>
         <div class="daily-forecast">
           <p id="forecast-day-3"></p>
-          <p class="forecast-max-temperature" id="forecast-day-3-max-temperature"></p>
-          <p class="forecast-min-temperature" id="forecast-day-3-min-temperature"></p>
+          <p
+            class="forecast-max-temperature"
+            id="forecast-day-3-max-temperature"
+          ></p>
+          <p
+            class="forecast-min-temperature"
+            id="forecast-day-3-min-temperature"
+          ></p>
           <p class="forecast-condition" id="forecast-day-3-condition"></p>
-          <img alt="Weather Condition Icon" id="forecast-day-3-condition-icon" />
+          <img
+            alt="Weather Condition Icon"
+            id="forecast-day-3-condition-icon"
+          />
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ body {
   display: flex;
   flex-direction: column;
   background: url("assets/day.jpeg");
-  background-position: right top;
+  background-position: right;
   background-size: cover; /* Initial setting, covers the entire container */
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -70,6 +70,75 @@ body {
   transform: scale(110%);
 }
 
+#current-information {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.138);
+  padding: 20px;
+  border-radius: 10px;
+  gap: 50px;
+}
+
+#top {
+  display: flex;
+  justify-content:space-between;
+  gap: 50px;
+}
+
+#location {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+#local-time {
+  margin: 0;
+}
+
+#current-temperature {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+#feels-like {
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+#current-condition {
+  margin-bottom: 0;
+}
+
+#bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right {
+  text-align: right;
+}
+
+#bottom .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+#wind, #uv, #humidity {
+  margin: 0;
+}
+
+#bottom .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+#sunset, #sunrise {
+  margin: 0;
+}
+
 #current-condition-icon {
   height: 64px;
   width: 64px;
@@ -87,7 +156,7 @@ button {
 }
 
 #forecast-title {
-  font-weight: bolder;
+  font-weight: bold;
   font-size: 2rem;
   margin: 0;
 }

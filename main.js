@@ -5,14 +5,12 @@ const localTimeElement = document.getElementById('local-time');
 const locationElement = document.getElementById('location');
 const currentTemperatureElement = document.getElementById('current-temperature');
 const feelsLikeElement = document.getElementById('feels-like');
-const todayMinTemperatureElement = document.getElementById('today-min-temperature');
-const todayMaxTemperatureElement = document.getElementById('today-max-temperature');
 const windElement = document.getElementById('wind');
 const uvElement = document.getElementById('uv');
 const sunsetElement = document.getElementById('sunset');
 const sunriseElement = document.getElementById('sunrise');
 const humidityElement = document.getElementById('humidity');
-const conditionElement = document.getElementById('condition');
+const conditionElement = document.getElementById('current-condition');
 const conditionIconElement = document.getElementById('current-condition-icon');
 const temperatureUnitButton = document.getElementById('temperature-unit');
 const speedUnitButton = document.getElementById('speed-unit');
@@ -122,7 +120,7 @@ function updateTemperatures(data, isCelsius) {
 function handleTemperatureUnitButtonClick(isCelsius) {
   const temperatures = updateTemperatures(weatherData, isCelsius);
 
-  currentTemperatureElement.textContent = `Current Temperature: ${
+  currentTemperatureElement.textContent = `${
     temperatures.currentTemperature
   }°${isCelsius ? 'C' : 'F'}`;
   feelsLikeElement.textContent = `Feels Like: ${temperatures.feelsLike}°${
@@ -164,16 +162,14 @@ function displayWeatherInformation(data) {
 
   localTimeElement.textContent = formattedDateUK;
   locationElement.textContent = `${data.location.name}, ${data.location.country}`;
-  currentTemperatureElement.textContent = `Current Temperature: ${data.current.temp_c}°C`;
+  currentTemperatureElement.textContent = `${data.current.temp_c}°C`;
   feelsLikeElement.textContent = `Feels Like: ${data.current.feelslike_c}°C`;
-  todayMinTemperatureElement.textContent = `Min: ${data.forecast.forecastday[0].day.mintemp_c}°C`;
-  todayMaxTemperatureElement.textContent = `Max: ${data.forecast.forecastday[0].day.maxtemp_c}°C`;
   windElement.textContent = `Wind: ${data.current.wind_mph}mph`;
   uvElement.textContent = `UV: ${data.current.uv}`;
   sunsetElement.textContent = `Sunset: ${formattedSunset}`;
   sunriseElement.textContent = `Sunrise: ${formattedSunrise}`;
   humidityElement.textContent = `Humidity: ${data.current.humidity}%`;
-  conditionElement.textContent = `Condition: ${data.current.condition.text}`;
+  conditionElement.textContent = data.current.condition.text;
   conditionIconElement.src = currentConditioniconURL;
   forecastDay1MinTemperature.textContent = `${data.forecast.forecastday[0].day.mintemp_c}°C`;
   forecastDay1MaxTemperature.textContent = `${data.forecast.forecastday[0].day.maxtemp_c}°C`;
