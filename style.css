@@ -33,6 +33,10 @@ body {
   background-image: url("assets/night.jpeg");
 }
 
+.night #current-information, .night #forecast {
+  background-color: rgba(243, 243, 243, 0.065);
+}
+
 button {
   cursor: pointer;
 }
@@ -40,7 +44,7 @@ button {
 #search-box {
   position: relative;
   width: fit-content;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff40;
   padding-bottom: 5px;
   gap: 5px;
 }
@@ -181,6 +185,7 @@ button {
 
 #daily-forecast-container {
   display: flex;
+  justify-content: center;
   gap: 50px;
 }
 
