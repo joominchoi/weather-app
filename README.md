@@ -3,8 +3,9 @@ Creating a weather forecast site using a weather API
 
 Check out the project [here](joominchoi.github.io/weather-app/)!
 
-**Course reference pages:** \
-[Weather App](https://www.theodinproject.com/lessons/node-path-javascript-weather-app)
+**Course reference pages:**
+- [Project: Weather App](https://www.theodinproject.com/lessons/node-path-javascript-weather-app)
+- [Weather API](https://www.weatherapi.com/my/)
 
 ## Thoughts
 
