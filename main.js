@@ -13,7 +13,7 @@ const sunsetElement = document.getElementById('sunset');
 const sunriseElement = document.getElementById('sunrise');
 const humidityElement = document.getElementById('humidity');
 const conditionElement = document.getElementById('condition');
-const conditionIconElement = document.getElementById('condition-icon');
+const conditionIconElement = document.getElementById('current-condition-icon');
 const temperatureUnitButton = document.getElementById('temperature-unit');
 const speedUnitButton = document.getElementById('speed-unit');
 const forecastDay1MinTemperature = document.getElementById('forecast-day-1-min-temperature');
@@ -175,19 +175,19 @@ function displayWeatherInformation(data) {
   humidityElement.textContent = `Humidity: ${data.current.humidity}%`;
   conditionElement.textContent = `Condition: ${data.current.condition.text}`;
   conditionIconElement.src = currentConditioniconURL;
-  forecastDay1MinTemperature.textContent = `Min: ${data.forecast.forecastday[0].day.mintemp_c}°C`;
-  forecastDay1MaxTemperature.textContent = `Max: ${data.forecast.forecastday[0].day.maxtemp_c}°C`;
-  forecastDay1Condition.textContent = `Condition: ${data.forecast.forecastday[0].day.condition.text}`;
+  forecastDay1MinTemperature.textContent = `${data.forecast.forecastday[0].day.mintemp_c}°C`;
+  forecastDay1MaxTemperature.textContent = `${data.forecast.forecastday[0].day.maxtemp_c}°C`;
+  forecastDay1Condition.textContent = data.forecast.forecastday[0].day.condition.text;
   forecastDay1ConditionIcon.src = forecastDay1ConditioniconURL;
   forecastDay2Element.textContent = forecastDay2Day;
-  forecastDay2MinTemperature.textContent = `Min: ${data.forecast.forecastday[1].day.mintemp_c}°C`;
-  forecastDay2MaxTemperature.textContent = `Max: ${data.forecast.forecastday[1].day.maxtemp_c}°C`;
-  forecastDay2Condition.textContent = `Condition: ${data.forecast.forecastday[1].day.condition.text}`;
+  forecastDay2MinTemperature.textContent = `${data.forecast.forecastday[1].day.mintemp_c}°C`;
+  forecastDay2MaxTemperature.textContent = `${data.forecast.forecastday[1].day.maxtemp_c}°C`;
+  forecastDay2Condition.textContent = data.forecast.forecastday[1].day.condition.text;
   forecastDay2ConditionIcon.src = forecastDay2ConditioniconURL;
   forecastDay3Element.textContent = forecastDay3Day;
-  forecastDay3MinTemperature.textContent = `Min: ${data.forecast.forecastday[2].day.mintemp_c}°C`;
-  forecastDay3MaxTemperature.textContent = `Max: ${data.forecast.forecastday[2].day.maxtemp_c}°C`;
-  forecastDay3Condition.textContent = `Condition: ${data.forecast.forecastday[2].day.condition.text}`;
+  forecastDay3MinTemperature.textContent = `${data.forecast.forecastday[2].day.mintemp_c}°C`;
+  forecastDay3MaxTemperature.textContent = `${data.forecast.forecastday[2].day.maxtemp_c}°C`;
+  forecastDay3Condition.textContent = data.forecast.forecastday[2].day.condition.text;
   forecastDay3ConditionIcon.src = forecastDay3ConditioniconURL;
 }
 

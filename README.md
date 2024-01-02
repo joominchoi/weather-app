@@ -18,6 +18,7 @@ where '1' indicates it's daytime and '0' indiciates it's nighttime.
   - The reason for using a fixed date (2000-01-01) is that we're only interested in formatting the time part, not the date. By providing a consistent date (January 1, 2000), we can use the toLocaleString method to format the time without affecting the actual date part of the string.
   - For example, if time is "06:30 PM", the resulting dateObject will represent January 1, 2000, at 6:30 PM. However, when we call toLocaleString on this object, it will only consider the time part for formatting, and the date will be ignored.
   - This approach is useful when you want to format time strings without dealing with the complexities of different date formats, time zones, etc. It allows you to leverage the toLocaleString method for consistent time formatting.
+- 1rem is equivalent to the root font size
 
 ## Recapping
 - Adding styling to different classes to add and remove from element depending on state

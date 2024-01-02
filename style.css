@@ -3,17 +3,25 @@
   src: url("assets/montserrat.ttf") format("truetype");
 }
 
+html {
+  font-size: 15px;
+}
+
 body {
-  background: url("assets/day.jpeg") right / cover no-repeat;
   display: flex;
-  gap: 10px;
   flex-direction: column;
-  align-items: start;
-  justify-content: center;
-  padding-left: 20px;
+  background: url("assets/day.jpeg");
+  background-position: right top;
+  background-size: cover; /* Initial setting, covers the entire container */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  gap: 10px;
+  padding: 20px;
   height: 100vh; /* 100% of the viewport height */
+  width: fit-content;
   margin: 0; /* Remove default margin */
   font-family: "montserrat", sans-serif;
+  color: white;
 }
 
 .day {
@@ -22,11 +30,9 @@ body {
 
 .night {
   background-image: url("assets/night.jpeg");
-  color: white;
 }
 
 #search-box {
-  display: flex;
   position: relative;
   width: fit-content;
   border-bottom: 2px solid #ffffff;
@@ -39,18 +45,6 @@ body {
   font-size: 16px;
   border: none;
   background: none;
-  color: white;
-}
-
-#search-button {
-  width: 20px;
-  height: 20px;
-  filter: invert(100%);
-}
-
-#search-button:hover {
-  cursor: pointer;
-  transform: scale(110%);
 }
 
 #city-input:focus {
@@ -65,11 +59,58 @@ body {
   color: #ffffff; /* Set the placeholder color to red */
 }
 
+#search-button {
+  width: 20px;
+  height: 20px;
+  filter: invert(100%);
+}
+
+#search-button:hover {
+  cursor: pointer;
+  transform: scale(110%);
+}
+
+#current-condition-icon {
+  height: 64px;
+  width: 64px;
+}
+
 button {
   cursor: pointer;
 }
 
+#forecast {
+  margin-top: auto;
+  background-color: rgba(0, 0, 0, 0.138);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#forecast-title {
+  font-weight: bolder;
+  font-size: 2rem;
+  margin: 0;
+}
+
 #daily-forecast-container {
   display: flex;
-  gap: 20px;
+  gap: 50px;
+}
+
+.daily-forecast {
+  text-align: center;
+}
+
+.forecast-max-temperature {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.forecast-min-temperature {
+  margin: 0;
+}
+
+.forecast-condition {
+  margin-bottom: 0;
 }
