@@ -3,7 +3,9 @@ const cityInput = document.getElementById('city-input');
 const searchButton = document.getElementById('search-button');
 const localTimeElement = document.getElementById('local-time');
 const locationElement = document.getElementById('location');
-const currentTemperatureElement = document.getElementById('current-temperature');
+const currentTemperatureElement = document.getElementById(
+  'current-temperature',
+);
 const feelsLikeElement = document.getElementById('feels-like');
 const windElement = document.getElementById('wind');
 const uvElement = document.getElementById('uv');
@@ -14,20 +16,44 @@ const conditionElement = document.getElementById('current-condition');
 const conditionIconElement = document.getElementById('current-condition-icon');
 const temperatureUnitButton = document.getElementById('temperature-unit');
 const speedUnitButton = document.getElementById('speed-unit');
-const forecastDay1MinTemperature = document.getElementById('forecast-day-1-min-temperature');
-const forecastDay1MaxTemperature = document.getElementById('forecast-day-1-max-temperature');
-const forecastDay1Condition = document.getElementById('forecast-day-1-condition');
-const forecastDay1ConditionIcon = document.getElementById('forecast-day-1-condition-icon');
+const forecastDay1MinTemperature = document.getElementById(
+  'forecast-day-1-min-temperature',
+);
+const forecastDay1MaxTemperature = document.getElementById(
+  'forecast-day-1-max-temperature',
+);
+const forecastDay1Condition = document.getElementById(
+  'forecast-day-1-condition',
+);
+const forecastDay1ConditionIcon = document.getElementById(
+  'forecast-day-1-condition-icon',
+);
 const forecastDay2Element = document.getElementById('forecast-day-2');
-const forecastDay2MinTemperature = document.getElementById('forecast-day-2-min-temperature');
-const forecastDay2MaxTemperature = document.getElementById('forecast-day-2-max-temperature');
-const forecastDay2Condition = document.getElementById('forecast-day-2-condition');
-const forecastDay2ConditionIcon = document.getElementById('forecast-day-2-condition-icon');
+const forecastDay2MinTemperature = document.getElementById(
+  'forecast-day-2-min-temperature',
+);
+const forecastDay2MaxTemperature = document.getElementById(
+  'forecast-day-2-max-temperature',
+);
+const forecastDay2Condition = document.getElementById(
+  'forecast-day-2-condition',
+);
+const forecastDay2ConditionIcon = document.getElementById(
+  'forecast-day-2-condition-icon',
+);
 const forecastDay3Element = document.getElementById('forecast-day-3');
-const forecastDay3MinTemperature = document.getElementById('forecast-day-3-min-temperature');
-const forecastDay3MaxTemperature = document.getElementById('forecast-day-3-max-temperature');
-const forecastDay3Condition = document.getElementById('forecast-day-3-condition');
-const forecastDay3ConditionIcon = document.getElementById('forecast-day-3-condition-icon');
+const forecastDay3MinTemperature = document.getElementById(
+  'forecast-day-3-min-temperature',
+);
+const forecastDay3MaxTemperature = document.getElementById(
+  'forecast-day-3-max-temperature',
+);
+const forecastDay3Condition = document.getElementById(
+  'forecast-day-3-condition',
+);
+const forecastDay3ConditionIcon = document.getElementById(
+  'forecast-day-3-condition-icon',
+);
 let isCelsius = true;
 let isMph = true;
 let weatherData; // Store weather data in a variable
@@ -67,7 +93,15 @@ async function fetchWeatherInformation() {
 }
 
 function getDayOfWeek(dateString) {
-  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const daysOfWeek = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
   const date = new Date(dateString);
   const dayIndex = date.getDay();
 
@@ -113,6 +147,14 @@ function updateTemperatures(data, isCelsius) {
       data.forecast.forecastday[0].day[todayMinTemperatureUnit],
     todayMaxTemperature:
       data.forecast.forecastday[0].day[todayMaxTemperatureUnit],
+    forecastDay2MinTemperature:
+      data.forecast.forecastday[1].day[todayMinTemperatureUnit],
+    forecastDay2MaxTemperature:
+      data.forecast.forecastday[1].day[todayMaxTemperatureUnit],
+    forecastDay3MinTemperature:
+      data.forecast.forecastday[2].day[todayMinTemperatureUnit],
+    forecastDay3MaxTemperature:
+      data.forecast.forecastday[2].day[todayMaxTemperatureUnit],
   };
 }
 
@@ -120,17 +162,29 @@ function updateTemperatures(data, isCelsius) {
 function handleTemperatureUnitButtonClick(isCelsius) {
   const temperatures = updateTemperatures(weatherData, isCelsius);
 
-  currentTemperatureElement.textContent = `${
-    temperatures.currentTemperature
-  }°${isCelsius ? 'C' : 'F'}`;
+  currentTemperatureElement.textContent = `${temperatures.currentTemperature}°${
+    isCelsius ? 'C' : 'F'
+  }`;
   feelsLikeElement.textContent = `Feels Like: ${temperatures.feelsLike}°${
     isCelsius ? 'C' : 'F'
   }`;
-  todayMinTemperatureElement.textContent = `Min Temperature: ${
+  forecastDay1MinTemperature.textContent = `${
     temperatures.todayMinTemperature
   }°${isCelsius ? 'C' : 'F'}`;
-  todayMaxTemperatureElement.textContent = `Max Temperature: ${
+  forecastDay1MaxTemperature.textContent = `${
     temperatures.todayMaxTemperature
+  }°${isCelsius ? 'C' : 'F'}`;
+  forecastDay2MinTemperature.textContent = `${
+    temperatures.forecastDay2MinTemperature
+  }°${isCelsius ? 'C' : 'F'}`;
+  forecastDay2MaxTemperature.textContent = `${
+    temperatures.forecastDay2MaxTemperature
+  }°${isCelsius ? 'C' : 'F'}`;
+  forecastDay3MinTemperature.textContent = `${
+    temperatures.forecastDay3MinTemperature
+  }°${isCelsius ? 'C' : 'F'}`;
+  forecastDay3MaxTemperature.textContent = `${
+    temperatures.forecastDay3MaxTemperature
   }°${isCelsius ? 'C' : 'F'}`;
 }
 
@@ -155,8 +209,12 @@ function displayWeatherInformation(data) {
   const forecastDay1ConditioniconURL = `https:${data.forecast.forecastday[0].day.condition.icon}`;
   const forecastDay2ConditioniconURL = `https:${data.forecast.forecastday[1].day.condition.icon}`;
   const forecastDay3ConditioniconURL = `https:${data.forecast.forecastday[2].day.condition.icon}`;
-  const formattedSunset = timeFormatter(data.forecast.forecastday[0].astro.sunset);
-  const formattedSunrise = timeFormatter(data.forecast.forecastday[0].astro.sunrise);
+  const formattedSunset = timeFormatter(
+    data.forecast.forecastday[0].astro.sunset,
+  );
+  const formattedSunrise = timeFormatter(
+    data.forecast.forecastday[0].astro.sunrise,
+  );
   const forecastDay2Day = getDayOfWeek(data.forecast.forecastday[1].date);
   const forecastDay3Day = getDayOfWeek(data.forecast.forecastday[2].date);
 
