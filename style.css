@@ -3,8 +3,9 @@
   src: url("assets/montserrat.ttf") format("truetype");
 }
 
-html {
+html, body {
   font-size: 15px;
+  height: 100%;
 }
 
 body {
@@ -17,7 +18,7 @@ body {
   background-attachment: fixed;
   gap: 10px;
   padding: 20px;
-  height: 100vh; /* 100% of the viewport height */
+  box-sizing: border-box;
   width: fit-content;
   margin: 0; /* Remove default margin */
   font-family: "montserrat", sans-serif;
