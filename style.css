@@ -33,6 +33,10 @@ body {
   background-image: url("assets/night.jpeg");
 }
 
+button {
+  cursor: pointer;
+}
+
 #search-box {
   position: relative;
   width: fit-content;
@@ -145,8 +149,21 @@ body {
   width: 64px;
 }
 
-button {
-  cursor: pointer;
+#unit-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+#temperature-unit, #speed-unit {
+  border: none;
+  background: none;
+  font-family: "montserrat", sans-serif;
+  color: white;
+}
+
+#temperature-unit:hover, #speed-unit:hover {
+  transform: scale(105%);
 }
 
 #forecast {
