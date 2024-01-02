@@ -1,6 +1,8 @@
 # The Odin Project: Weather App
 Creating a weather forecast site using a weather API
 
+Check out the project [here](joominchoi.github.io/weather-app/)!
+
 **Course reference pages:** \
 [Weather App](https://www.theodinproject.com/lessons/node-path-javascript-weather-app)
 
