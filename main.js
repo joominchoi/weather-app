@@ -245,6 +245,12 @@ function displayWeatherInformation(data) {
   forecastDay3ConditionIcon.src = forecastDay3ConditioniconURL;
 }
 
+cityInput.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+    searchButton.click();
+  }
+});
+
 searchButton.addEventListener('click', fetchWeatherInformation);
 
 temperatureUnitButton.addEventListener('click', () => {
