@@ -22,6 +22,7 @@ where '1' indicates it's daytime and '0' indiciates it's nighttime.
 ## Recapping
 - Adding styling to different classes to add and remove from element depending on state
   - For example having different styling for whether it is daytime or nighttime for the searched city/country
+- To make an element grow larger when hovered over by cursor, use *transform: scale(X%)'* instead of manually setting width and height of element to prevent the enlargening of the element from affecting the layout of other elements.
 
 ## WIP
 - Layout of information
